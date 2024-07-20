@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board {{ board_id }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="menu">
+        <button id="selectRect">Rectangle</button>
+        <button id="selectCircle">Circle</button>
+        <button id="selectArrow">Arrow</button>
+        <button id="selectText">Text</button>
+        <button id="selectNestedBoard">Nested Board</button>
+    </div>
+    <div id="style-panel">
+        <label for="fillColor">Fill Color:</label>
+        <input type="color" id="fillColor" name="fillColor">
+        <label for="strokeColor">Stroke Color:</label>
+        <input type="color" id="strokeColor" name="strokeColor">
+        <label for="strokeWidth">Stroke Width:</label>
+        <input type="number" id="strokeWidth" name="strokeWidth" min="1" max="10" value="2">
+        <button id="applyStyle">Apply Style</button>
+    </div>
+    <div id="breadcrumb">
+        <a href="{{ url_for('index') }}">Home</a> > Board {{ board_id }}
+    </div>
+    <div id="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/konva@8.3.10/konva.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script>
+        var boardId = "{{ board_id }}";
+        var shapes = {{ shapes | tojson }};
+    </script>
+</body>
+</html>
